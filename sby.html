@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+
+<!--script src="https://unpkg.com/@c-frame/aframe-particle-system-component@1.2.x/dist/aframe-particle-system-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.5.0/dist/aframe-extras.min.js"></script-->
+    <!--script src='https://cdn.jsdelivr.net/gh/akbartus/A-Frame-Occlusion-Component/js/occlusion-component.js'></script-->
+    <!--script src="https://unpkg.com/aframe-render-order-component@1.1.0/dist/aframe-render-order-component.min.js"></script-->
+
+        <!----><script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script><!---->
+        <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+        <!----><script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-detector.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-handler.js"></script><!---->
+    </head>
+<!--Kamako-->
+    <body style="margin: 0; overflow: hidden;background:#bbb">
+        <!----><a-scene
+            vr-mode-ui="enabled: false;"
+            loading-screen="enabled: false;"
+            renderer="logarithmicDepthBuffer: true;"
+            arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
+            id="scene"
+            embedded
+            gesture-detector
+        ><!---->
+        <!----<a-scene><!---->
+            <a-assets>
+                <a-asset-item
+                    id="animated-asset"
+                    src="/AR-diorama/sby/shibuya.gltf"
+                ></a-asset-item>
+            </a-assets>
+            <!--a-assets>
+    <a-mixin id="hider" material="colorWrite: false; depthWrite: true"></a-mixin>
+  </a-assets-->
+	<!----><a-marker type="pattern" url="/AR-diorama/pattern-IMG_7213.patt"
+                id="animated-marker"
+                
+                
+                raycaster="objects: .clickable"
+                emitevents="true"
+                cursor="fuse: false; rayOrigin: mouse;"
+                id="markerA"
+            ><!---->
+    <!--a-plane width="5.7" height="10" position="5 -1.2 0" rotation="-83 90 0" material="shader:standard;color:#fb5;metalness:0;roughness:1;"></a-plane>
+    <!--a-entity id="ocean" ocean="density: 96; width: 10; depth: 5.7; speed: 3.5"
+                material="shader:standard;color: #08a; opacity: 0.75; metalness: 0.0; roughness: 1"
+                rotation="-90 0 -0"
+                position="4.3 -0.8 -0"
+                scale="1 1 0.08"></a-entity>
+    <a-entity id="ocean" ocean="density: 192; width: 10; depth: 5.7; speed: 3.5"
+                material="shader:standard;color: #fff; opacity: 0.25; metalness: 0.0; roughness: 1"
+                rotation="-90 0 -0"
+                position="4.3 -0.8 -0"
+                scale="1 1 0.12"></a-entity>
+    <a-entity id= "ocean"
+ocean="density: 112; width: 10; depth: 5.7; speed: 4;color:#08a;opacity:0.75;"
+rotation="-90 180 -0"
+position="4.3 -0.8 -0"
+scale="1 1 0.08"
+
+
+animation="property: position; easing: easeInOutQuad; dir: alternate; dur: 2500; to: 4.3 -0.76 -0; loop: true"
+
+></a-entity-->
+   	<a-plane id="occluder" position='-1.35 0.01 0' rotation="-90 0 90" width="10" height="1.66" 
+    ></a-plane>
+
+<!--a-box position="0 2 2" 
+       scale="2 3 0.1" 
+       material="shader:occlusion;colorWrite: false; depthTest:true;depthWrite: true;">
+</a-box-->
+
+                <a-entity
+                    scale="0.11 0.11 0.11"
+                    position="-3.57 0 0"
+                    animation-mixer="loop: repeat"
+                    gltf-model="#animated-asset"
+                    class="clickable"
+                    gesture-handler
+                    depth-test
+                    material="depthTest:true;"
+                ></a-entity>
+                    <!--a-light position="10000 5000 10000"></a-light>
+                    <a-light position="-10000 5000 10000"></a-light>
+                    <a-light position="-10000 5000 -10000"></a-light>
+                    <a-light position="10000 5000 -10000"></a-light-->
+
+                    <a-entity position="4 0.5 1" light="type:point;color:#fff;intensity:0.1"></a-entity>
+                    <a-entity position="0 0.5 1" light="type:point;color:#fff;intensity:0.1"></a-entity>
+
+
+            <!----></a-marker><!---->
+<!----<a-sky color="#333"></a-sky><!---->
+<!--5 3 1くらいがリアルな視点-->
+            <!----><a-entity camera><!---->
+            <!----<a-entity camera look-controls position="4 4 0"><!----></a-entity>
+
+<!--script>let t=0;setInterval(()=>{document.querySelector("a-camera").setAttribute("position",`${4*Math.abs(Math.sin(t/100))} 2.5 ${4*Math.cos(t/100)}`);t++},25)</script-->
+<!--script>
+        const sceneEl = document.querySelector('a-scene');
+        sceneEl.addEventListener('loaded', () => {
+            sceneEl.camera = new THREE.PerspectiveCamera();
+        });
+      </script-->
+<script>
+  setTimeout(()=>{
+  const occl=document.querySelector("#occluder").object3DMap.mesh;
+  occl.material=new THREE.MeshBasicMaterial({ colorWrite: false });
+  occl.renderOrder=-1;
+  },1000);
+  /*AFRAME.registerShader('occlusion', {
+      schema: {},
+      //vertexShader:"",
+      fragmentShader: "void main() {gl_FragColor = vec4(0.0); gl_FragDepth=0.0;}"
+    });*/
+</script>
+        </a-scene>
+    </body>
+</html>
