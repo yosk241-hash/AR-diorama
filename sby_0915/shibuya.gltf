@@ -19,7 +19,7 @@
 						1,
 						1
 					],
-					"intensity":0.005435141169285007,
+					"intensity":0.05435141169285007,
 					"type":"point",
 					"name":"Light"
 				},
@@ -29,7 +29,7 @@
 						1,
 						1
 					],
-					"intensity":0.016305424694230755,
+					"intensity":0.16305424694230755,
 					"type":"point",
 					"name":"Point.001"
 				},
@@ -39,7 +39,7 @@
 						1,
 						1
 					],
-					"intensity":0.005435141169285007,
+					"intensity":0.05435141169285007,
 					"type":"point",
 					"name":"Point"
 				}
