@@ -3649,9 +3649,9 @@
 	],
 	"images":[
 		{
-			"mimeType":"image/gif",
+			"mimeType":"image/png",
 			"name":"7rigahama",
-			"uri":"giftest.gif"
+			"uri":"7rigahama.png"
 		},
 		{
 			"mimeType":"image/png",
