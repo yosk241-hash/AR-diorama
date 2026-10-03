@@ -4584,7 +4584,6 @@
 			}
 		},
 		{
-			"alphaMode":"BLEND",
 			"doubleSided":true,
 			"name":"\u5916\u5e8a\u6750V004",
 			"pbrMetallicRoughness":{
