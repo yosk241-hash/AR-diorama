@@ -105,6 +105,18 @@ animation="property: position; easing: easeInOutQuad; dir: alternate; dur: 2500;
     },100)
   },1000)
 </script-->
+            <script>
+  setTimeout(()=>{
+  const occl=document.querySelector("#occluder").object3DMap.mesh;
+  occl.material=new THREE.MeshBasicMaterial({ colorWrite: false });
+  occl.renderOrder=-1;
+  },1000);
+  /*AFRAME.registerShader('occlusion', {
+      schema: {},
+      //vertexShader:"",
+      fragmentShader: "void main() {gl_FragColor = vec4(0.0); gl_FragDepth=0.0;}"
+    });*/
+</script>
         </a-scene>
     </body>
 </html>
