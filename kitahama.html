@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+    <head>
+<meta charset="utf-8">
+        <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+
+<script src="https://unpkg.com/@c-frame/aframe-particle-system-component@1.2.x/dist/aframe-particle-system-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.5.0/dist/aframe-extras.min.js"></script>
+
+        <!----><script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script><!---->
+        <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+        <!----><script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-detector.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-handler.js"></script><!---->
+    </head>
+<!--Kamako-->
+    <body style="margin: 0; overflow: hidden;">
+        <!----><a-scene
+            vr-mode-ui="enabled: false;"
+            loading-screen="enabled: false;"
+            renderer="logarithmicDepthBuffer: true;"
+            arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
+            id="scene"
+            embedded
+            gesture-detector
+        ><!---->
+        <!----<a-scene><!---->
+            <a-assets>
+                <a-asset-item
+                    id="animated-asset"
+                    src="/AR-diorama/takanawa_new/takanawa_new.gltf"
+                ></a-asset-item>
+            </a-assets>
+
+  <!----><a-marker type="pattern" url="/AR-diorama/pattern-IMG_7213.patt"
+                id="animated-marker"
+                
+                
+                raycaster="objects: .clickable"
+                emitevents="true"
+                cursor="fuse: false; rayOrigin: mouse;"
+                id="markerA"
+            ><!---->
+    <!--a-box position='0 0.5 0' material='opacity: 0.1;'></a-box-->
+            
+    <a-entity id= "ocean"
+ocean="density: 112; width: 10; depth: 5.7; speed: 4;color:#08a;opacity:0.75;"
+rotation="-90 180 -0"
+position="-1.3 -0.5 -0"
+scale="1 1 0.08"
+
+
+animation="property: position; easing: easeInOutQuad; dir: alternate; dur: 2500; to: -1.3 -0.45 -0; loop: true"
+
+></a-entity>
+   	<a-plane id="occluder" position='-1.35 0.01 0' rotation="-90 0 90" width="20" height="1.68" 
+    ></a-plane>
+
+                <a-entity
+                    scale="0.11 0.11 0.11"
+                    position="-3.56 0 0"
+                    animation-mixer="loop: repeat"
+                    gltf-model="#animated-asset"
+                    class="clickable"
+                    transparent="false"
+                    gesture-handler
+                ></a-entity>
+                    <a-light position="10000 5000 10000"></a-light>
+                    <a-light position="-10000 5000 10000"></a-light>
+                    <a-light position="-10000 5000 -10000"></a-light>
+                    <a-light position="10000 5000 -10000"></a-light>
+
+                    <!--a-entity position="0 10 0" light="type:point;color:#fff;intensity:4"></a-entity-->
+
+            <!----></a-marker><!---->
+<!----<a-sky color="#eee"></a-sky><!---->
+<!--5 3 1くらいがリアルな視点-->
+            <!----><a-entity camera><!---->
+            <!----<a-entity camera look-controls position="3 4 -2"><!----></a-entity>
+
+<!--script>let t=0;setInterval(()=>{document.querySelector("a-camera").setAttribute("position",`${4*Math.abs(Math.sin(t/100))} 2.5 ${4*Math.cos(t/100)}`);t++},25)</script-->
+        <!--canvas id="cnv" style="position:sticky;top:0px;left:0px;width:100vw;height:100vh;z-index:9999"></canvas>
+<!--script>
+  setTimeout(()=>{
+    
+      const canvas=document.querySelector("#cnv");
+      const arcanvas=document.querySelector("canvas.a-canvas")
+      canvas.width=arcanvas.width;
+      canvas.height=arcanvas.height;
+    setInterval(()=>{
+      const canvas=document.querySelector("#cnv");
+      const video=document.querySelector("video[autoplay]");
+      const ctx=canvas.getContext("2d");
+    
+      ctx.fillStyle="#000"
+      ctx.fillRect(0,0,100,100)
+      ctx.drawImage(video,0,0,canvas.width,canvas.height)
+    },100)
+  },1000)
+</script-->
+            <script>
+  setTimeout(()=>{
+  const occl=document.querySelector("#occluder").object3DMap.mesh;
+  occl.material=new THREE.MeshBasicMaterial({ colorWrite: false });
+  occl.renderOrder=-1;
+  },1000);
+  /*AFRAME.registerShader('occlusion', {
+      schema: {},
+      //vertexShader:"",
+      fragmentShader: "void main() {gl_FragColor = vec4(0.0); gl_FragDepth=0.0;}"
+    });*/
+</script>
+        </a-scene>
+    </body>
+</html>
