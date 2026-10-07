@@ -3214,12 +3214,13 @@
 			"name":"snow",
 			"pbrMetallicRoughness":{
 				"baseColorFactor":[
-					0.5488501191139221,
-					0.5452350974082947,
-					0.5344752669334412,
+					0.7623043656349182,
+					0.72599196434021,
+					0.7711269855499268,
 					1
 				],
-				"metallicFactor":0
+				"metallicFactor":0,
+				"roughnessFactor":0.5
 			}
 		},
 		{
