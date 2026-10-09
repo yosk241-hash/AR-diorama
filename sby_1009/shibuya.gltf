@@ -14993,7 +14993,6 @@
 			}
 		},
 		{
-			"alphaMode":"BLEND",
 			"doubleSided":true,
 			"name":"109wall",
 			"pbrMetallicRoughness":{
